@@ -2068,6 +2068,16 @@ func IsBannedFromBeingCandidateReplica(replica *Instance) bool {
 			return true
 		}
 	}
+	if config.Config.BanReplicasFromRemoteDCForPromotion {
+		masterInstance, _, _ := ReadInstance(&replica.MasterKey)
+		if masterInstance == nil {
+			return false
+		}
+		if replica.DataCenter != masterInstance.DataCenter {
+			log.Debugf("instance %v is banned for promotion because it is in another DC.", replica.Key)
+			return true
+		}
+	}
 	return false
 }
 

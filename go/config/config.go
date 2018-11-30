@@ -180,6 +180,7 @@ type Configuration struct {
 	DetectInstanceAliasQuery                   string            // Optional query (executed on topology instance) that returns the alias of an instance. If provided, must return one row, one column
 	DetectPromotionRuleQuery                   string            // Optional query (executed on topology instance) that returns the promotion rule of an instance. If provided, must return one row, one column.
 	DataCenterPattern                          string            // Regexp pattern with one group, extracting the datacenter name from the hostname
+	BanReplicasFromRemoteDCForPromotion        bool              // When "true" orchestrator will ignore replicas in a different datacenter for master promotion.
 	PhysicalEnvironmentPattern                 string            // Regexp pattern with one group, extracting physical environment info from hostname (e.g. combination of datacenter & prod/dev env)
 	DetectDataCenterQuery                      string            // Optional query (executed on topology instance) that returns the data center of an instance. If provided, must return one row, one column. Overrides DataCenterPattern and useful for installments where DC cannot be inferred by hostname
 	DetectPhysicalEnvironmentQuery             string            // Optional query (executed on topology instance) that returns the physical environment of an instance. If provided, must return one row, one column. Overrides PhysicalEnvironmentPattern and useful for installments where env cannot be inferred by hostname
@@ -344,6 +345,7 @@ func newConfiguration() *Configuration {
 		DetectInstanceAliasQuery:                   "",
 		DetectPromotionRuleQuery:                   "",
 		DataCenterPattern:                          "",
+		BanReplicasFromRemoteDCForPromotion:        false,
 		PhysicalEnvironmentPattern:                 "",
 		DetectDataCenterQuery:                      "",
 		DetectPhysicalEnvironmentQuery:             "",

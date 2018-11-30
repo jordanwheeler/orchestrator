@@ -136,5 +136,6 @@
   "OSCIgnoreHostnameFilters": [],
   "GraphiteAddr": "",
   "GraphitePath": "",
-  "GraphiteConvertHostnameDotsToUnderscores": true
+  "GraphiteConvertHostnameDotsToUnderscores": true,
+  "BanReplicasFromRemoteDCForPromotion": true
 }
